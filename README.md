@@ -1,2 +1,2 @@
 # php-webLine
-PHP website command line
+PHP command line on a website
