@@ -2,7 +2,7 @@
 
 ## Uses
 
-Once you have obtained a commaind shell on a webserver you can upload files and execute them. Many webservers will not allow EXE files to run on them that are not signed by reputable companies, however we can bypass this protection using MSBuild. I have included an example MSBuild inline task payload that will simply attempt to ping all IP addresses within the /24 cidr range of the IP address that is provided to it.
+In order to gain command execution using PHP you must be able to upload files to the webserver. Once you have uploaded a PHP file that allows you to execute commands you can begin to upload more malicious files that you can execute using the PHP command shell tool. Many webservers will not allow EXE files to run on them that are not signed by reputable companies, however we can bypass this protection using MSBuild. I have included an example MSBuild inline task payload that will simply attempt to ping all IP addresses within the /24 cidr range of the IP address that is provided to it.
 
 Ex
 ```
