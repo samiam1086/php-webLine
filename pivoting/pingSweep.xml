@@ -1,0 +1,65 @@
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<!-- C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe SimpleTasks.csproj -->
+	<Target Name="pinger">
+            <pingsweep /> 
+          </Target>
+          <UsingTask
+            TaskName="pingsweep"
+            TaskFactory="CodeTaskFactory"
+            AssemblyFile="C:\Windows\Microsoft.Net\Framework\v4.0.30319\Microsoft.Build.Tasks.v4.0.dll" >
+            <Task>
+              <Code Type="Class" Language="cs">
+              <![CDATA[
+using System; using System.Diagnostics; using System.Runtime.InteropServices; using System.IO; using System.Security.Principal; using System.Threading; using Microsoft.Build.Framework; using Microsoft.Build.Utilities; using System.Net.NetworkInformation; using System.Text;
+public class pingsweep : Task, ITask {
+
+	private static bool IsMachineUp(string hostName){
+		bool retVal = false;
+    try
+    {
+        Ping pingSender = new Ping();
+        PingOptions options = new PingOptions();
+        // Use the default Ttl value which is 128,
+        // but change the fragmentation behavior.
+        options.DontFragment = true;
+        // Create a buffer of 32 bytes of data to be transmitted.
+        string data = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+        byte[] buffer = Encoding.ASCII.GetBytes(data);
+        int timeout = 120;
+ 
+        PingReply reply = pingSender.Send(hostName, timeout, buffer, options);
+        if (reply.Status == IPStatus.Success)
+        {
+            retVal = true;
+        }
+    }
+    catch (Exception ex)
+    {
+        retVal = false;
+        Console.WriteLine(ex.Message);
+    }
+    return retVal;
+}
+
+	public override bool Execute(){
+
+                string mask = $(IP);
+		int pos = mask.LastIndexOf('.');
+		mask = mask.Substring(0, pos+1);
+		using (StreamWriter writer = new StreamWriter("upHosts-ping.txt")){ 
+                    for (int i = 0; i <=255; i++){
+		        if (IsMachineUp(mask+i)){
+			    Console.WriteLine(mask+i);
+		    	    writer.WriteLine(mask+i);
+		        }
+                    }
+		}
+	
+		return true;
+	}}
+                                ]]>
+                        </Code>
+                </Task>
+        </UsingTask>
+</Project>
+
