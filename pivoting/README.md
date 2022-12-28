@@ -1,6 +1,6 @@
 #Pivoting
 
-The example pingSweep.xml is an MSBuild inline task implementation of [this](https://morgantechspace.com/2015/07/csharp-check-if-machine-is-online-or-offline.html)
+The example pingSweep.xml is an MSBuild inline task implementation of [https://morgantechspace.com/2015/07/csharp-check-if-machine-is-online-or-offline.html](https://morgantechspace.com/2015/07/csharp-check-if-machine-is-online-or-offline.html)
 
 ## Uses
 
