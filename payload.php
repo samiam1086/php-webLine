@@ -21,7 +21,7 @@ function create_page(){
     echo('');
     echo('        </form>');
     echo('        <form method="post" enctype="multipart/form-data">');
-    echo('            Standalone Upload Page<br>');
+    echo('            Upload Files<br>');
     echo('            <input type="file" name="fileToUpload" id="fileToUpload">');
     echo('            <input type="submit" value="Upload" name="submit">');
     echo('        </form>');
