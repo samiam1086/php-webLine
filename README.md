@@ -9,6 +9,11 @@ For this to work you need a website or web application that is vulnerable to PHP
 
 Next you will need to upload the webLine.php payload.
 
+If the website or web application has sanitization or restictions in place you should check out the links below for bypass and evasion techniques.
+
+[https://null-byte.wonderhowto.com/how-to/bypass-file-upload-restrictions-web-apps-get-shell-0323454/](https://null-byte.wonderhowto.com/how-to/bypass-file-upload-restrictions-web-apps-get-shell-0323454/)
+[https://book.hacktricks.xyz/pentesting-web/file-upload](https://book.hacktricks.xyz/pentesting-web/file-upload)
+
 ![](/assets/upload.png)
 
 ![](/assets/uploaded.png)
