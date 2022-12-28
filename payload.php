@@ -26,7 +26,7 @@ function create_page(){
     return 1;
 }
 
-echo ('<p>OS Version</p>')
+echo ('<p>OS Version</p>');
 echo php_uname();
 
 $a = create_page();
