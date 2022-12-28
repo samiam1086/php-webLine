@@ -7,3 +7,12 @@ For this to work you need a website or web application that is vulnerable to PHP
 
 ![](/assets/vulnerable_page.png)
 
+Next you will need to upload the webLine.php payload.
+
+![](/assets/upload.png)
+
+![](/assets/uploaded.png)
+
+Once you have uploaded the PHP file you will need to navigate to it, and once you have navigated to the PHP file you should be greeted with:
+
+![](/assets/payload.png)
